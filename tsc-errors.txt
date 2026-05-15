@@ -1,0 +1,354 @@
+components/layout/navbar.tsx(236,23): error TS2322: Type '{ primary: string; primaryTypographyProps: { fontWeight: number; color: string; }; }' is not assignable to type 'IntrinsicAttributes & ListItemTextProps<"span", "p">'.
+  Property 'primaryTypographyProps' does not exist on type 'IntrinsicAttributes & ListItemTextProps<"span", "p">'.
+components/sections/about.tsx(81,12): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: { component: ElementType<any, keyof IntrinsicElements>; } & GridBaseProps & { sx?: SxProps<Theme> | undefined; } & Omit<...>): Element | null', gave the following error.
+    Property 'component' is missing in type '{ children: Element[]; container: true; spacing: number; alignItems: string; }' but required in type '{ component: ElementType<any, keyof IntrinsicElements>; }'.
+  Overload 2 of 2, '(props: DefaultComponentProps<GridTypeMap<{}, "div">>): Element | null', gave the following error.
+    Type '{ children: Element[]; container: true; spacing: number; alignItems: string; }' is not assignable to type 'IntrinsicAttributes & GridBaseProps & { sx?: SxProps<Theme> | undefined; } & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "sx" | keyof GridBaseProps>'.
+      Property 'alignItems' does not exist on type 'IntrinsicAttributes & GridBaseProps & { sx?: SxProps<Theme> | undefined; } & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "sx" | keyof GridBaseProps>'.
+components/sections/about.tsx(84,26): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/about.tsx(120,20): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: { component: ElementType<any, keyof IntrinsicElements>; } & StackOwnProps & CommonProps & Omit<any, keyof CommonProps | keyof StackOwnProps>): Element | null', gave the following error.
+    Property 'component' is missing in type '{ children: Element[]; direction: "row"; spacing: number; flexWrap: string; useFlexGap: true; }' but required in type '{ component: ElementType<any, keyof IntrinsicElements>; }'.
+  Overload 2 of 2, '(props: DefaultComponentProps<StackTypeMap<{}, "div">>): Element | null', gave the following error.
+    Type '{ children: Element[]; direction: "row"; spacing: number; flexWrap: string; useFlexGap: true; }' is not assignable to type 'IntrinsicAttributes & StackOwnProps & CommonProps & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof CommonProps | keyof StackOwnProps>'.
+      Property 'flexWrap' does not exist on type 'IntrinsicAttributes & StackOwnProps & CommonProps & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof CommonProps | keyof StackOwnProps>'.
+components/sections/about.tsx(158,21): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/contact.tsx(98,26): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/experience.tsx(81,17): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; x: number; }; visible: { opacity: number; x: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; x: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; x: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; x: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; x: number; }; visible: { opacity: number; x: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; x: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; x: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; x: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/projects.tsx(136,21): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; exit: { opacity: number; scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; exit: { opacity: number; scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/services.tsx(73,19): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/skills.tsx(75,19): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/sections/skills.tsx(184,31): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { width: string; }; visible: (level: number) => { width: string; transition: { duration: number; ease: string; delay: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '(level: number) => { width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'Variant'.
+          Type '(level: number) => { width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'TargetResolver'.
+            Type '{ width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'string | TargetAndTransition'.
+              Type '{ width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'TargetAndTransition'.
+                Type '{ width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+                  Types of property 'transition' are incompatible.
+                    Type '{ duration: number; ease: string; delay: number; }' is not assignable to type 'Transition<any> | undefined'.
+                      Type '{ duration: number; ease: string; delay: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                        Type '{ duration: number; ease: string; delay: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                          Types of property 'ease' are incompatible.
+                            Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<BoxTypeMap<{}, "div", Theme>>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { width: string; }; visible: (level: number) => { width: string; transition: { duration: number; ease: string; delay: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '(level: number) => { width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'Variant'.
+          Type '(level: number) => { width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'TargetResolver'.
+            Type '{ width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'string | TargetAndTransition'.
+              Type '{ width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type 'TargetAndTransition'.
+                Type '{ width: string; transition: { duration: number; ease: string; delay: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+                  Types of property 'transition' are incompatible.
+                    Type '{ duration: number; ease: string; delay: number; }' is not assignable to type 'Transition<any> | undefined'.
+                      Type '{ duration: number; ease: string; delay: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                        Type '{ duration: number; ease: string; delay: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                          Types of property 'ease' are incompatible.
+                            Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+components/ui/section-title.tsx(63,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<TypographyTypeMap<{}, "span">>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<TypographyTypeMap<{}, "span">>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/ui/section-title.tsx(82,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<TypographyTypeMap<{}, "span">>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<TypographyTypeMap<{}, "span">>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/ui/section-title.tsx(97,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<TypographyTypeMap<{}, "span">>>, "children"> & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+  Overload 2 of 2, '(props: Omit<MotionComponentProps<DefaultComponentProps<TypographyTypeMap<{}, "span">>>, "children"> & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+lib/theme.ts(79,9): error TS2353: Object literal may only specify known properties, and 'containedPrimary' does not exist in type 'Partial<OverridesStyleRules<keyof ButtonClasses, "MuiButton", Omit<Theme, "palette" | "components"> & CssVarsTheme>>'.
