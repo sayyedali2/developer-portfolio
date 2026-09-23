@@ -68,14 +68,14 @@ export interface Testimonial {
 
 export const DEVELOPER_INFO = {
   name: "Sayyed Amaan Ali",
-  title: "Junior Full Stack Developer",
+  title: "Full Stack Developer",
   email: "sayyedamaanali164@gmail.com",
   intro:
     "Passionate about building scalable, modern web applications that deliver exceptional user experiences. Specializing in React, Next.js, Nest.js and Node.js ecosystems with a focus on clean code and performance optimization.",
   about:
-    "I'm a self-driven full stack developer with hands-on experience building real-world applications for startups and freelance clients. My journey began with curiosity about how websites work, and it evolved into a passion for creating seamless digital experiences. I thrive on turning complex problems into elegant, user-friendly solutions.",
+    "I'm a self-driven Full Stack Developer with hands-on experience building real-world web applications through internships and freelance projects. I specialize in backend development using Node.js and NestJS, while also working with Next.js and React to build complete web applications. I enjoy solving practical problems, designing reliable APIs, and turning ideas into scalable, user-friendly solutions.",
   location: "Udaipur, Rajasthan, India",
-  availability: "Available for Freelance & FullTime Role",
+  availability: "Available for Full-Time & Freelance Opportunities",
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -85,7 +85,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     url: "https://www.linkedin.com/in/sayyed-aman-ali-67b716287/",
     icon: LinkedInIcon,
   },
-  { name: "Email", url: "sayyedamaanali164@gmail.com", icon: EmailIcon },
+ 
   { name: "X", url: "https://x.com/SayyedAmaa61549", icon: XIcon },
 ];
 
@@ -160,22 +160,32 @@ export const PROJECTS: Project[] = [
     category: ["Full Stack", "SaaS"],
   },
   {
-    id: "2",
-    title: "Secure Election Simulator",
-    description:
-      "A highly secure web-based simulation platform incorporating multi-layered security protocols to prevent exploitation and ensure fair gameplay.",
-    features: [
-      "Multi-layered security system",
-      "Device fingerprinting",
-      "IP tracking & management",
-      "Behavioral analysis to prevent multi-accounts",
-    ],
-    techStack: ["Next.js", "NestJS", "TypeScript", "MongoDB"],
-    image: "",
-    liveUrl: "",
-    githubUrl: "https://github.com/sayyedali2/election_game_frontend",
-    category: ["Full Stack", "Freelance"],
-  },
+  id: "2",
+  title: "AI Prompt Optimizer",
+  description:
+    "An AI-powered platform that transforms simple ideas into clear, detailed, and effective prompts for AI tools, helping users get more useful and consistent results.",
+  features: [
+    "AI-powered prompt optimization",
+    "Prompt generation and refinement",
+    "Background job processing with BullMQ",
+    "Credit-based usage system",
+    "User authentication and profile management",
+    "Razorpay payment integration"
+  ],
+  techStack: [
+    "Next.js",
+    "TypeScript",
+    "Supabase",
+    "BullMQ",
+    "Redis",
+    "Gemini",
+    "Groq"
+  ],
+  image: "/promptOptimizer.png",
+  liveUrl: "https://prompt-improver-gules.vercel.app/",
+  githubUrl: "https://github.com/sayyedali2/developer-portfolio",
+  category: ["Full Stack", "AI"]
+},
   {
     id: "3",
     title: "AI Technical Screener",

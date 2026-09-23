@@ -9,6 +9,7 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { DEVELOPER_INFO } from "@/lib/constants";
 import { SectionTitle } from "@/components/ui/section-title";
+import Image from "next/image";
 
 const MotionBox = motion.create(Box);
 
@@ -39,19 +40,19 @@ export function About() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -62,15 +63,16 @@ export function About() {
       component="section"
       ref={ref}
       sx={{
-        py: { xs: 10, md: 14 },
+        py: { xs: 12, md: 16 },
         position: "relative",
+        bgcolor: "var(--background)",
       }}
     >
       <Container maxWidth="lg">
         <SectionTitle
           subtitle="About Me"
-          title="Passionate Developer Building Digital Experiences"
-          description="Combining creativity with technical expertise to deliver exceptional web solutions"
+          title="Building Digital Experiences"
+          description="Combining technical expertise with structured design to deliver exceptional web solutions."
         />
 
         <MotionBox
@@ -78,70 +80,84 @@ export function About() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <Grid container spacing={6} sx={{ alignItems: "center" }}>
-            {/* About Text */}
-            <Grid size={{ xs: 12, md: 6 }}>
-              <MotionBox variants={itemVariants}>
+          <Grid container spacing={3}>
+            {/* Bento Grid Layout */}
+            
+            {/* Main Text Card */}
+            <Grid size={{ xs: 12, md: 8 }}>
+              <MotionBox variants={itemVariants} sx={{ height: "100%" }}>
                 <Box
                   sx={{
-                    p: 4,
-                    borderRadius: 4,
-                    bgcolor: "rgba(18, 18, 26, 0.6)",
-                    backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(139, 92, 246, 0.1)",
-                    position: "relative",
-                    overflow: "hidden",
+                    p: { xs: 4, md: 5 },
+                    height: "100%",
+                    borderRadius: "16px",
+                    bgcolor: "var(--card)",
+                    border: "1px solid var(--border)",
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    transition: "all 0.2s ease",
+                    "&:hover": {
+                      borderColor: "var(--foreground)",
+                    }
                   }}
                 >
-                  {/* Decorative gradient */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "4px",
-                      background: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
-                    }}
-                  />
+                  <Box>
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        fontWeight: 700,
+                        color: "var(--foreground)",
+                        mb: 3,
+                        letterSpacing: "-0.02em"
+                      }}
+                    >
+                      A passion for precision.
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "var(--muted-foreground)",
+                        lineHeight: 1.8,
+                        mb: 4,
+                        fontSize: { xs: "1rem", md: "1.1rem" },
+                      }}
+                    >
+                      {DEVELOPER_INFO.about}
+                    </Typography>
+                  </Box>
 
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "text.secondary",
-                      lineHeight: 1.9,
-                      mb: 3,
-                      fontSize: { xs: "0.95rem", md: "1rem" },
-                    }}
-                  >
-                    {DEVELOPER_INFO.about}
-                  </Typography>
-
-                  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }} useFlexGap>
+                  <Stack direction="row" spacing={1.5} sx={{ flexWrap: "wrap" }} useFlexGap>
                     <Chip
                       icon={<LocationOnIcon sx={{ fontSize: 16 }} />}
                       label={DEVELOPER_INFO.location}
                       sx={{
-                        bgcolor: "rgba(139, 92, 246, 0.1)",
-                        border: "1px solid rgba(139, 92, 246, 0.2)",
-                        color: "text.secondary",
-                        "& .MuiChip-icon": { color: "#8B5CF6" },
+                        bgcolor: "var(--foreground)",
+                        color: "var(--background)",
+                        borderRadius: "6px",
+                        fontWeight: 600,
+                        "& .MuiChip-icon": { color: "var(--background)" },
                       }}
                     />
                     <Chip
                       label="3+ Projects Delivered"
                       sx={{
-                        bgcolor: "rgba(6, 182, 212, 0.1)",
-                        border: "1px solid rgba(6, 182, 212, 0.2)",
-                        color: "text.secondary",
+                        bgcolor: "var(--secondary)",
+                        border: "1px solid var(--border)",
+                        color: "var(--foreground)",
+                        borderRadius: "6px",
+                        fontWeight: 500,
                       }}
                     />
                     <Chip
                       label="1+ Years Experience"
                       sx={{
-                        bgcolor: "rgba(34, 197, 94, 0.1)",
-                        border: "1px solid rgba(34, 197, 94, 0.2)",
-                        color: "text.secondary",
+                        bgcolor: "var(--secondary)",
+                        border: "1px solid var(--border)",
+                        color: "var(--foreground)",
+                        borderRadius: "6px",
+                        fontWeight: 500,
                       }}
                     />
                   </Stack>
@@ -149,81 +165,96 @@ export function About() {
               </MotionBox>
             </Grid>
 
-            {/* Highlight Cards */}
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Stack spacing={3}>
-                {highlights.map((item, index) => (
-                  <MotionBox
-                    key={item.title}
-                    variants={itemVariants}
-                    whileHover={{ x: 10, transition: { duration: 0.2 } }}
+            {/* Image Card */}
+            <Grid size={{ xs: 12, md: 4 }}>
+              <MotionBox variants={itemVariants} sx={{ height: "100%" }}>
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: { xs: "300px", md: "100%" },
+                    minHeight: "350px",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    border: "1px solid var(--border)",
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
+                    "&:hover img": {
+                      transform: "scale(1.05)",
+                    }
+                  }}
+                >
+                  <Image
+                    src="/images/about_workspace.png"
+                    alt="Developer workspace"
+                    fill
+                    style={{ objectFit: "cover", transition: "transform 0.5s ease" }}
+                  />
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)",
+                    }}
+                  />
+                </Box>
+              </MotionBox>
+            </Grid>
+
+            {/* Bottom 3 Cards */}
+            {highlights.map((item) => (
+              <Grid size={{ xs: 12, sm: 4 }} key={item.title}>
+                <MotionBox variants={itemVariants}>
+                  <Box
+                    sx={{
+                      p: 4,
+                      borderRadius: "16px",
+                      bgcolor: "var(--card)",
+                      border: "1px solid var(--border)",
+                      transition: "all 0.2s ease",
+                      boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
+                      "&:hover": {
+                        borderColor: "var(--foreground)",
+                        transform: "translateY(-4px)",
+                      },
+                    }}
                   >
                     <Box
                       sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: "10px",
                         display: "flex",
-                        alignItems: "flex-start",
-                        gap: 3,
-                        p: 3,
-                        borderRadius: 3,
-                        bgcolor: "rgba(18, 18, 26, 0.4)",
-                        border: "1px solid rgba(139, 92, 246, 0.1)",
-                        cursor: "default",
-                        transition: "all 0.3s ease",
-                        "&:hover": {
-                          bgcolor: "rgba(18, 18, 26, 0.6)",
-                          borderColor: "rgba(139, 92, 246, 0.3)",
-                        },
+                        alignItems: "center",
+                        justifyContent: "center",
+                        bgcolor: "var(--secondary)",
+                        border: "1px solid var(--border)",
+                        mb: 3,
                       }}
                     >
-                      <Box
-                        sx={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: 2,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          background: `linear-gradient(135deg, ${
-                            index === 0
-                              ? "#8B5CF6"
-                              : index === 1
-                              ? "#06B6D4"
-                              : "#22C55E"
-                          } 0%, ${
-                            index === 0
-                              ? "#A78BFA"
-                              : index === 1
-                              ? "#22D3EE"
-                              : "#4ADE80"
-                          } 100%)`,
-                          flexShrink: 0,
-                        }}
-                      >
-                        <item.icon sx={{ color: "white", fontSize: 24 }} />
-                      </Box>
-                      <Box>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            fontWeight: 600,
-                            mb: 0.5,
-                            fontSize: "1rem",
-                          }}
-                        >
-                          {item.title}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "text.secondary" }}
-                        >
-                          {item.description}
-                        </Typography>
-                      </Box>
+                      <item.icon sx={{ color: "var(--foreground)", fontSize: 24 }} />
                     </Box>
-                  </MotionBox>
-                ))}
-              </Stack>
-            </Grid>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 700,
+                        mb: 1,
+                        fontSize: "1.1rem",
+                        color: "var(--foreground)",
+                        letterSpacing: "-0.01em"
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "var(--muted-foreground)", lineHeight: 1.6 }}
+                    >
+                      {item.description}
+                    </Typography>
+                  </Box>
+                </MotionBox>
+              </Grid>
+            ))}
           </Grid>
         </MotionBox>
       </Container>

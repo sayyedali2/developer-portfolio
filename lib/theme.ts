@@ -4,24 +4,24 @@ import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#8B5CF6",
-      light: "#A78BFA",
-      dark: "#7C3AED",
+      main: "#0369A1",
+      light: "#0EA5E9",
+      dark: "#075985",
     },
     secondary: {
-      main: "#06B6D4",
-      light: "#22D3EE",
-      dark: "#0891B2",
+      main: "#F1F5F9",
+      light: "#F8FAFC",
+      dark: "#E2E8F0",
     },
     background: {
-      default: "#0A0A0F",
-      paper: "#12121A",
+      default: "#FFFFFF",
+      paper: "#F8FAFC",
     },
     text: {
-      primary: "#F8FAFC",
-      secondary: "#94A3B8",
+      primary: "#0F172A",
+      secondary: "#64748B",
     },
   },
   typography: {
@@ -92,9 +92,9 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          background: "rgba(18, 18, 26, 0.8)",
+          background: "var(--card)",
           backdropFilter: "blur(20px)",
-          border: "1px solid rgba(139, 92, 246, 0.1)",
+          border: "1px solid var(--border)",
         },
       },
     },

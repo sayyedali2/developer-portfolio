@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Container, Typography, Stack, IconButton } from "@mui/material";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { DEVELOPER_INFO, SOCIAL_LINKS } from "@/lib/constants";
 
@@ -12,39 +12,36 @@ export function Footer() {
     <Box
       component="footer"
       sx={{
-        py: 4,
-        borderTop: "1px solid rgba(139, 92, 246, 0.1)",
-        bgcolor: "rgba(10, 10, 15, 0.8)",
-        backdropFilter: "blur(10px)",
+        py: 6,
+        borderTop: "1px solid var(--border)",
+        bgcolor: "var(--card)",
       }}
     >
       <Container maxWidth="lg">
         <MotionBox
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 3,
+            gap: 4,
           }}
         >
           {/* Logo */}
           <Typography
             variant="h6"
             sx={{
-              fontWeight: 700,
-              background: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontWeight: 800,
+              color: "var(--foreground)",
+              letterSpacing: "-0.02em",
             }}
           >
             {DEVELOPER_INFO.name.split(" ")[0]}
-            <Box component="span" sx={{ WebkitTextFillColor: "#06B6D4" }}>
+            <Box component="span" sx={{ color: "var(--muted-foreground)" }}>
               .
             </Box>
           </Typography>
@@ -53,16 +50,17 @@ export function Footer() {
           <Typography
             variant="body2"
             sx={{
-              color: "text.secondary",
+              color: "var(--muted-foreground)",
               display: "flex",
               alignItems: "center",
               gap: 0.5,
               textAlign: "center",
+              fontWeight: 500,
             }}
           >
             Built with{" "}
             <FavoriteIcon
-              sx={{ fontSize: 16, color: "#EC4899", mx: 0.5 }}
+              sx={{ fontSize: 14, color: "var(--foreground)", mx: 0.5 }}
             />{" "}
             by {DEVELOPER_INFO.name} &copy; {new Date().getFullYear()}
           </Typography>
@@ -78,11 +76,17 @@ export function Footer() {
                 aria-label={social.name}
                 size="small"
                 sx={{
-                  color: "text.secondary",
+                  width: 36,
+                  height: 36,
+                  color: "var(--muted-foreground)",
+                  border: "1px solid transparent",
+                  borderRadius: "6px",
                   "&:hover": {
-                    color: "#8B5CF6",
+                    color: "var(--foreground)",
+                    bgcolor: "var(--secondary)",
+                    borderColor: "var(--border)",
                   },
-                  transition: "color 0.3s ease",
+                  transition: "all 0.2s ease",
                 }}
               >
                 <social.icon fontSize="small" />

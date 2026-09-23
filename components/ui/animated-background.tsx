@@ -1,9 +1,17 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import { Box } from "@mui/material";
 
 export function AnimatedBackground() {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <Box
       sx={{
@@ -14,7 +22,7 @@ export function AnimatedBackground() {
         height: "100%",
         zIndex: -1,
         overflow: "hidden",
-        background: "#0A0A0F",
+        background: "var(--background)",
       }}
     >
       {/* Gradient orbs */}
@@ -25,7 +33,7 @@ export function AnimatedBackground() {
           height: "600px",
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)",
+            "radial-gradient(circle, var(--glow-primary) 0%, transparent 70%)",
           top: "-200px",
           right: "-200px",
           filter: "blur(60px)",
@@ -47,7 +55,7 @@ export function AnimatedBackground() {
           height: "500px",
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(3, 105, 161, 0.08) 0%, transparent 70%)",
           bottom: "-150px",
           left: "-150px",
           filter: "blur(60px)",
@@ -70,7 +78,7 @@ export function AnimatedBackground() {
           height: "400px",
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)",
+            "radial-gradient(circle, var(--glow-primary) 0%, transparent 70%)",
           top: "40%",
           left: "30%",
           filter: "blur(80px)",
@@ -93,8 +101,8 @@ export function AnimatedBackground() {
           position: "absolute",
           inset: 0,
           backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px)
+            linear-gradient(rgba(3, 105, 161, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(3, 105, 161, 0.05) 1px, transparent 1px)
           `,
           backgroundSize: "50px 50px",
           maskImage: "radial-gradient(ellipse at center, black 20%, transparent 70%)",
@@ -110,7 +118,7 @@ export function AnimatedBackground() {
             width: Math.random() * 4 + 2 + "px",
             height: Math.random() * 4 + 2 + "px",
             borderRadius: "50%",
-            background: i % 2 === 0 ? "#8B5CF6" : "#06B6D4",
+            background: i % 2 === 0 ? "var(--primary-light)" : "var(--primary)",
             left: Math.random() * 100 + "%",
             top: Math.random() * 100 + "%",
             opacity: 0.3,

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography, Grid, LinearProgress } from "@mui/material";
+import { Box, Container, Typography, Grid, Chip } from "@mui/material";
 import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 import { SKILL_CATEGORIES } from "@/lib/constants";
@@ -17,33 +17,21 @@ export function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
-  };
-
-  const progressVariants: Variants = {
-    hidden: { width: "0%" },
-    visible: (level: number) => ({
-      width: `${level}%`,
-      transition: {
-        duration: 1,
-        ease: "easeOut",
-        delay: 0.3,
-      },
-    }),
   };
 
   return (
@@ -52,15 +40,16 @@ export function Skills() {
       component="section"
       ref={ref}
       sx={{
-        py: { xs: 10, md: 14 },
+        py: { xs: 12, md: 16 },
         position: "relative",
+        bgcolor: "var(--background)",
       }}
     >
       <Container maxWidth="lg">
         <SectionTitle
           subtitle="My Skills"
-          title="Technologies I Work With"
-          description="A comprehensive toolkit for building modern web applications"
+          title="Technical Expertise"
+          description="A comprehensive toolkit for building robust, scalable web applications."
         />
 
         <MotionBox
@@ -68,133 +57,83 @@ export function Skills() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <Grid container spacing={4}>
-            {SKILL_CATEGORIES.map((category, categoryIndex) => (
-              <Grid key={category.title} size={{ xs: 12, sm: 6, lg: 3 }}>
+          <Grid container spacing={3}>
+            {SKILL_CATEGORIES.map((category) => (
+              <Grid key={category.title} size={{ xs: 12, sm: 6, md: 3 }}>
                 <MotionBox
                   variants={cardVariants}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.3 }
-                  }}
+                  sx={{ height: "100%" }}
                 >
                   <Box
                     sx={{
-                      p: 3,
+                      p: 4,
                       height: "100%",
-                      borderRadius: 4,
-                      bgcolor: "rgba(18, 18, 26, 0.6)",
-                      backdropFilter: "blur(16px)",
-                      border: "1px solid rgba(139, 92, 246, 0.1)",
+                      borderRadius: "16px",
+                      bgcolor: "var(--card)",
+                      border: "1px solid var(--border)",
                       position: "relative",
-                      overflow: "hidden",
-                      transition: "all 0.3s ease",
+                      transition: "all 0.2s ease",
+                      boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
                       "&:hover": {
-                        borderColor: "rgba(139, 92, 246, 0.3)",
-                        boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
+                        borderColor: "var(--foreground)",
+                        transform: "translateY(-4px)",
+                        boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
                       },
                     }}
                   >
-                    {/* Gradient top border */}
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: "3px",
-                        background: categoryIndex % 2 === 0
-                          ? "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)"
-                          : "linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%)",
-                      }}
-                    />
-
                     {/* Header */}
                     <Box
                       sx={{
                         display: "flex",
-                        alignItems: "center",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
                         gap: 2,
-                        mb: 3,
+                        mb: 4,
                       }}
                     >
                       <Box
                         sx={{
-                          width: 40,
-                          height: 40,
-                          borderRadius: 2,
+                          width: 44,
+                          height: 44,
+                          borderRadius: "10px",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          background: categoryIndex % 2 === 0
-                            ? "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)"
-                            : "linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%)",
+                          bgcolor: "var(--secondary)",
+                          border: "1px solid var(--border)",
                         }}
                       >
-                        <category.icon sx={{ color: "white", fontSize: 22 }} />
+                        <category.icon sx={{ color: "var(--foreground)", fontSize: 22 }} />
                       </Box>
                       <Typography
                         variant="h6"
-                        sx={{ fontWeight: 600, fontSize: "1.1rem" }}
+                        sx={{ fontWeight: 700, fontSize: "1.1rem", color: "var(--foreground)", letterSpacing: "-0.01em" }}
                       >
                         {category.title}
                       </Typography>
                     </Box>
 
-                    {/* Skills */}
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
+                    {/* Skill Cluster */}
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
                       {category.skills.map((skill) => (
-                        <Box key={skill.name}>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                              mb: 0.75,
-                            }}
-                          >
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                fontWeight: 500,
-                                color: "text.primary",
-                              }}
-                            >
-                              {skill.name}
-                            </Typography>
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                color: "text.secondary",
-                                fontWeight: 500,
-                              }}
-                            >
-                              {skill.level}%
-                            </Typography>
-                          </Box>
-                          <Box
-                            sx={{
-                              height: 6,
-                              borderRadius: 3,
-                              bgcolor: "rgba(139, 92, 246, 0.1)",
-                              overflow: "hidden",
-                            }}
-                          >
-                            <MotionBox
-                              variants={progressVariants}
-                              custom={skill.level}
-                              initial="hidden"
-                              animate={isInView ? "visible" : "hidden"}
-                              sx={{
-                                height: "100%",
-                                borderRadius: 3,
-                                background: categoryIndex % 2 === 0
-                                  ? "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)"
-                                  : "linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%)",
-                              }}
-                            />
-                          </Box>
-                        </Box>
+                        <Chip
+                          key={skill.name}
+                          label={skill.name}
+                          size="small"
+                          sx={{
+                            bgcolor: "var(--secondary)",
+                            border: "1px solid var(--border)",
+                            color: "var(--foreground)",
+                            fontWeight: 500,
+                            borderRadius: "6px",
+                            "&:hover": {
+                              bgcolor: "var(--foreground)",
+                              color: "var(--background)",
+                              borderColor: "var(--foreground)",
+                            },
+                            transition: "all 0.2s ease",
+                          }}
+                        />
                       ))}
                     </Box>
                   </Box>
