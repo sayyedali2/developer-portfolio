@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, DEVELOPER_INFO } from "@/lib/constants";
 
 const MotionBox = motion.create(Box);
@@ -72,10 +72,9 @@ export function Navbar() {
         position="fixed"
         elevation={0}
         sx={{
-          bgcolor: trigger ? "rgba(10, 10, 15, 0.9)" : "transparent",
-          backdropFilter: trigger ? "blur(20px)" : "none",
-          borderBottom: trigger ? "1px solid rgba(139, 92, 246, 0.1)" : "none",
+          bgcolor: "transparent",
           transition: "all 0.3s ease",
+          pt: 2,
         }}
       >
         <Container maxWidth="lg">
@@ -84,27 +83,32 @@ export function Navbar() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              py: 2,
+              py: 1.5,
+              px: { xs: 2, md: 4 },
+              borderRadius: "12px",
+              bgcolor: trigger ? "rgba(255, 255, 255, 0.9)" : "transparent",
+              backdropFilter: trigger ? "blur(12px)" : "none",
+              border: trigger ? "1px solid var(--border)" : "1px solid transparent",
+              transition: "all 0.2s ease",
+              boxShadow: trigger ? "0 4px 20px rgba(0, 0, 0, 0.02)" : "none",
             }}
           >
             {/* Logo */}
             <MotionBox
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               sx={{
-                fontSize: "1.5rem",
-                fontWeight: 700,
-                background: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                fontSize: "1.25rem",
+                fontWeight: 800,
+                color: "var(--foreground)",
                 cursor: "pointer",
+                letterSpacing: "-0.02em",
               }}
               onClick={() => handleNavClick("#home")}
             >
               {DEVELOPER_INFO.name.split(" ")[0]}
-              <Box component="span" sx={{ color: "#06B6D4", WebkitTextFillColor: "#06B6D4" }}>
+              <Box component="span" sx={{ color: "var(--muted-foreground)" }}>
                 .
               </Box>
             </MotionBox>
@@ -114,15 +118,15 @@ export function Navbar() {
               sx={{
                 display: { xs: "none", md: "flex" },
                 alignItems: "center",
-                gap: 1,
+                gap: 0.5,
               }}
             >
               {NAV_LINKS.map((link, index) => (
                 <MotionBox
                   key={link.name}
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
                   <Box
                     component="a"
@@ -134,21 +138,21 @@ export function Navbar() {
                     sx={{
                       px: 2,
                       py: 1,
-                      borderRadius: 2,
+                      borderRadius: "6px",
                       fontSize: "0.875rem",
                       fontWeight: 500,
                       color: activeSection === link.href.replace("#", "")
-                        ? "#8B5CF6"
-                        : "text.secondary",
+                        ? "var(--foreground)"
+                        : "var(--muted-foreground)",
                       bgcolor: activeSection === link.href.replace("#", "")
-                        ? "rgba(139, 92, 246, 0.1)"
+                        ? "var(--secondary)"
                         : "transparent",
                       cursor: "pointer",
                       textDecoration: "none",
-                      transition: "all 0.3s ease",
+                      transition: "all 0.2s ease",
                       "&:hover": {
-                        color: "#8B5CF6",
-                        bgcolor: "rgba(139, 92, 246, 0.1)",
+                        color: "var(--foreground)",
+                        bgcolor: "var(--secondary)",
                       },
                     }}
                   >
@@ -160,11 +164,10 @@ export function Navbar() {
 
             {/* Mobile Menu Button */}
             <IconButton
-              color="inherit"
               aria-label="open menu"
               edge="end"
               onClick={handleDrawerToggle}
-              sx={{ display: { md: "none" } }}
+              sx={{ display: { md: "none" }, color: "var(--foreground)" }}
             >
               <MenuIcon />
             </IconButton>
@@ -183,7 +186,7 @@ export function Navbar() {
             height: 2,
             bgcolor: "transparent",
             "& .MuiLinearProgress-bar": {
-              background: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
+              background: "var(--foreground)",
             },
           }}
         />
@@ -199,13 +202,13 @@ export function Navbar() {
           "& .MuiDrawer-paper": {
             width: "100%",
             maxWidth: 320,
-            bgcolor: "#0A0A0F",
+            bgcolor: "var(--background)",
             backgroundImage: "none",
           },
         }}
       >
         <Box sx={{ p: 2, display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={handleDrawerToggle} sx={{ color: "text.primary" }}>
+          <IconButton onClick={handleDrawerToggle} sx={{ color: "var(--foreground)" }}>
             <CloseIcon />
           </IconButton>
         </Box>
@@ -217,18 +220,18 @@ export function Navbar() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
+                transition={{ duration: 0.2, delay: index * 0.05 }}
               >
                 <ListItem disablePadding sx={{ mb: 1 }}>
                   <ListItemButton
                     onClick={() => handleNavClick(link.href)}
                     sx={{
-                      borderRadius: 2,
+                      borderRadius: "6px",
                       bgcolor: activeSection === link.href.replace("#", "")
-                        ? "rgba(139, 92, 246, 0.1)"
+                        ? "var(--secondary)"
                         : "transparent",
                       "&:hover": {
-                        bgcolor: "rgba(139, 92, 246, 0.1)",
+                        bgcolor: "var(--secondary-dark)",
                       },
                     }}
                   >
@@ -236,10 +239,10 @@ export function Navbar() {
                       primary={
                         <Typography
                           sx={{
-                            fontWeight: activeSection === link.href.replace("#", "") ? 600 : 400,
+                            fontWeight: activeSection === link.href.replace("#", "") ? 600 : 500,
                             color: activeSection === link.href.replace("#", "")
-                              ? "#8B5CF6"
-                              : "text.primary",
+                              ? "var(--foreground)"
+                              : "var(--muted-foreground)",
                           }}
                         >
                           {link.name}

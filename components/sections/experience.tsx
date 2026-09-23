@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { Box, Container, Typography, Stack } from "@mui/material";
+import { Box, Container, Typography, Grid, Stack } from "@mui/material";
 import { motion, useInView, Variants } from "framer-motion";
-import WorkIcon from "@mui/icons-material/Work";
 import { EXPERIENCES } from "@/lib/constants";
 import { SectionTitle } from "@/components/ui/section-title";
+import WorkIcon from "@mui/icons-material/Work";
 
 const MotionBox = motion.create(Box);
 
@@ -18,19 +18,19 @@ export function Experience() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, x: -30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -41,15 +41,16 @@ export function Experience() {
       component="section"
       ref={ref}
       sx={{
-        py: { xs: 10, md: 14 },
+        py: { xs: 12, md: 16 },
         position: "relative",
+        bgcolor: "var(--background)",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <SectionTitle
-          subtitle="My Journey"
-          title="Professional Experience"
-          description="A timeline of my career growth and achievements"
+          subtitle="Career"
+          title="Professional Journey"
+          description="A timeline of my roles and achievements in the industry."
         />
 
         <MotionBox
@@ -57,156 +58,133 @@ export function Experience() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           sx={{
-            position: "relative",
-            maxWidth: 800,
-            mx: "auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
           }}
         >
-          {/* Timeline line */}
-          <Box
-            sx={{
-              position: "absolute",
-              left: { xs: 20, md: 40 },
-              top: 0,
-              bottom: 0,
-              width: 2,
-              background: "linear-gradient(180deg, #8B5CF6 0%, #06B6D4 50%, transparent 100%)",
-            }}
-          />
-
-          <Stack spacing={4}>
-            {EXPERIENCES.map((experience, index) => (
-              <MotionBox
-                key={experience.id}
-                variants={itemVariants}
+          {EXPERIENCES.map((experience) => (
+            <MotionBox
+              key={experience.id}
+              variants={itemVariants}
+            >
+              <Box
                 sx={{
-                  pl: { xs: 8, md: 12 },
-                  position: "relative",
+                  p: { xs: 3, md: 5 },
+                  borderRadius: "16px",
+                  bgcolor: "var(--card)",
+                  border: "1px solid var(--border)",
+                  transition: "all 0.2s ease",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
+                  "&:hover": {
+                    borderColor: "var(--foreground)",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
+                  },
                 }}
               >
-                {/* Timeline dot */}
-                <MotionBox
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: index * 0.2 + 0.3, duration: 0.4 }}
-                  sx={{
-                    position: "absolute",
-                    left: { xs: 8, md: 28 },
-                    top: 24,
-                    width: 24,
-                    height: 24,
-                    borderRadius: "50%",
-                    background: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 0 20px rgba(139, 92, 246, 0.4)",
-                  }}
-                >
-                  <WorkIcon sx={{ fontSize: 12, color: "white" }} />
-                </MotionBox>
-
-                {/* Content Card */}
-                <Box
-                  sx={{
-                    p: { xs: 3, md: 4 },
-                    borderRadius: 4,
-                    bgcolor: "rgba(18, 18, 26, 0.6)",
-                    backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(139, 92, 246, 0.1)",
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      borderColor: "rgba(139, 92, 246, 0.3)",
-                      transform: "translateX(8px)",
-                    },
-                  }}
-                >
-                  {/* Period Badge */}
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      display: "inline-block",
-                      px: 2,
-                      py: 0.5,
-                      mb: 2,
-                      borderRadius: 2,
-                      bgcolor: "rgba(6, 182, 212, 0.1)",
-                      border: "1px solid rgba(6, 182, 212, 0.2)",
-                      color: "#06B6D4",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {experience.period}
-                  </Typography>
-
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      fontWeight: 600,
-                      mb: 0.5,
-                      fontSize: { xs: "1.1rem", md: "1.25rem" },
-                    }}
-                  >
-                    {experience.title}
-                  </Typography>
-
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      color: "#8B5CF6",
-                      fontWeight: 500,
-                      mb: 2,
-                      fontSize: "0.95rem",
-                    }}
-                  >
-                    {experience.company}
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      mb: 2,
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {experience.description}
-                  </Typography>
-
-                  {/* Achievements */}
-                  <Stack spacing={1}>
-                    {experience.achievements.map((achievement, i) => (
-                      <Box
-                        key={i}
+                <Grid container spacing={3}>
+                  {/* Left Column: Date & Company */}
+                  <Grid size={{ xs: 12, md: 4 }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                      <Typography
+                        variant="overline"
                         sx={{
-                          display: "flex",
-                          alignItems: "flex-start",
-                          gap: 1.5,
+                          color: "var(--muted-foreground)",
+                          fontWeight: 600,
+                          letterSpacing: "0.05em",
                         }}
                       >
+                        {experience.period}
+                      </Typography>
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mt: 1 }}>
                         <Box
                           sx={{
-                            width: 6,
-                            height: 6,
-                            borderRadius: "50%",
-                            bgcolor: "#8B5CF6",
-                            mt: 1,
-                            flexShrink: 0,
+                            width: 32,
+                            height: 32,
+                            borderRadius: "8px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            bgcolor: "var(--secondary)",
+                            border: "1px solid var(--border)",
                           }}
-                        />
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "text.secondary", fontSize: "0.85rem" }}
                         >
-                          {achievement}
+                          <WorkIcon sx={{ fontSize: 16, color: "var(--foreground)" }} />
+                        </Box>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            fontWeight: 700,
+                            color: "var(--foreground)",
+                            letterSpacing: "-0.01em",
+                          }}
+                        >
+                          {experience.company}
                         </Typography>
                       </Box>
-                    ))}
-                  </Stack>
-                </Box>
-              </MotionBox>
-            ))}
-          </Stack>
+                    </Box>
+                  </Grid>
+
+                  {/* Right Column: Role & Details */}
+                  <Grid size={{ xs: 12, md: 8 }}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 700,
+                        mb: 1.5,
+                        fontSize: "1.1rem",
+                        color: "var(--foreground)",
+                      }}
+                    >
+                      {experience.title}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "var(--muted-foreground)",
+                        mb: 3,
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {experience.description}
+                    </Typography>
+
+                    {/* Achievements */}
+                    <Stack spacing={1.5}>
+                      {experience.achievements.map((achievement, i) => (
+                        <Box
+                          key={i}
+                          sx={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: 1.5,
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              width: 6,
+                              height: 6,
+                              borderRadius: "50%",
+                              bgcolor: "var(--border)",
+                              mt: 1,
+                              flexShrink: 0,
+                            }}
+                          />
+                          <Typography
+                            variant="body2"
+                            sx={{ color: "var(--muted-foreground)", fontSize: "0.9rem", lineHeight: 1.6 }}
+                          >
+                            {achievement}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Stack>
+                  </Grid>
+                </Grid>
+              </Box>
+            </MotionBox>
+          ))}
         </MotionBox>
       </Container>
     </Box>

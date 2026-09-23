@@ -12,7 +12,6 @@ import {
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import { TESTIMONIALS } from "@/lib/constants";
 import { SectionTitle } from "@/components/ui/section-title";
 
@@ -26,7 +25,7 @@ export function Testimonials() {
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
+      x: direction > 0 ? 100 : -100,
       opacity: 0,
     }),
     center: {
@@ -34,7 +33,7 @@ export function Testimonials() {
       opacity: 1,
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 300 : -300,
+      x: direction < 0 ? 100 : -100,
       opacity: 0,
     }),
   };
@@ -66,24 +65,25 @@ export function Testimonials() {
       component="section"
       ref={ref}
       sx={{
-        py: { xs: 10, md: 14 },
+        py: { xs: 12, md: 16 },
         position: "relative",
+        bgcolor: "var(--card)", // Alternating background color for sections
       }}
     >
       <Container maxWidth="md">
         <SectionTitle
           subtitle="Client Reviews"
           title="What Clients Say"
-          description="Feedback from clients I&apos;ve had the pleasure of working with"
+          description="Direct feedback from partners and clients."
         />
 
         <MotionBox
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           sx={{
             position: "relative",
-            maxWidth: 700,
+            maxWidth: 800,
             mx: "auto",
           }}
         >
@@ -91,26 +91,18 @@ export function Testimonials() {
           <Box
             sx={{
               p: { xs: 4, md: 6 },
-              borderRadius: 4,
-              bgcolor: "rgba(18, 18, 26, 0.6)",
-              backdropFilter: "blur(16px)",
-              border: "1px solid rgba(139, 92, 246, 0.1)",
+              borderRadius: "12px",
+              bgcolor: "var(--background)",
+              border: "1px solid var(--border)",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
               position: "relative",
               overflow: "hidden",
-              minHeight: { xs: 320, md: 280 },
+              minHeight: { xs: 320, md: 300 },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
-            {/* Quote icon */}
-            <FormatQuoteIcon
-              sx={{
-                position: "absolute",
-                top: 20,
-                right: 20,
-                fontSize: 60,
-                color: "rgba(139, 92, 246, 0.1)",
-              }}
-            />
-
             <AnimatePresence mode="wait" custom={direction}>
               <MotionBox
                 key={current}
@@ -121,7 +113,7 @@ export function Testimonials() {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.3 },
+                  opacity: { duration: 0.2 },
                 }}
                 sx={{
                   display: "flex",
@@ -130,68 +122,58 @@ export function Testimonials() {
                   textAlign: "center",
                 }}
               >
-                {/* Avatar */}
-                <Avatar
-                  sx={{
-                    width: 80,
-                    height: 80,
-                    mb: 3,
-                    bgcolor: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
-                    background: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
-                    fontSize: "1.5rem",
-                    fontWeight: 600,
-                    border: "3px solid rgba(139, 92, 246, 0.3)",
-                  }}
-                >
-                  {testimonial.name.charAt(0)}
-                </Avatar>
-
-                {/* Rating */}
-                <Rating
-                  value={testimonial.rating}
-                  readOnly
-                  sx={{
-                    mb: 2,
-                    "& .MuiRating-iconFilled": {
-                      color: "#F59E0B",
-                    },
-                  }}
-                />
-
                 {/* Content */}
                 <Typography
                   variant="body1"
                   sx={{
-                    color: "text.secondary",
-                    mb: 3,
-                    lineHeight: 1.8,
-                    fontSize: { xs: "0.95rem", md: "1.05rem" },
-                    maxWidth: 550,
+                    color: "var(--foreground)",
+                    mb: 4,
+                    lineHeight: 1.6,
+                    fontSize: { xs: "1.1rem", md: "1.25rem" },
+                    fontWeight: 500,
+                    maxWidth: 600,
                   }}
                 >
-                  &quot;{testimonial.content}&quot;
+                  "{testimonial.content}"
                 </Typography>
 
-                {/* Author */}
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: "1rem",
-                    mb: 0.5,
-                  }}
-                >
-                  {testimonial.name}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "#8B5CF6",
-                    fontWeight: 500,
-                  }}
-                >
-                  {testimonial.role} at {testimonial.company}
-                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <Avatar
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      bgcolor: "var(--secondary)",
+                      color: "var(--foreground)",
+                      border: "1px solid var(--border)",
+                      fontSize: "1rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {testimonial.name.charAt(0)}
+                  </Avatar>
+
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 600,
+                        fontSize: "0.95rem",
+                        color: "var(--foreground)"
+                      }}
+                    >
+                      {testimonial.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "var(--muted-foreground)",
+                        fontSize: "0.85rem",
+                      }}
+                    >
+                      {testimonial.role}, {testimonial.company}
+                    </Typography>
+                  </Box>
+                </Box>
               </MotionBox>
             </AnimatePresence>
           </Box>
@@ -202,7 +184,7 @@ export function Testimonials() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              gap: 2,
+              gap: 3,
               mt: 4,
             }}
           >
@@ -210,15 +192,19 @@ export function Testimonials() {
               onClick={handlePrev}
               aria-label="Previous testimonial"
               sx={{
-                bgcolor: "rgba(139, 92, 246, 0.1)",
-                border: "1px solid rgba(139, 92, 246, 0.2)",
-                color: "#8B5CF6",
+                width: 36,
+                height: 36,
+                bgcolor: "var(--card)",
+                border: "1px solid var(--border)",
+                color: "var(--foreground)",
                 "&:hover": {
-                  bgcolor: "rgba(139, 92, 246, 0.2)",
+                  bgcolor: "var(--secondary)",
+                  borderColor: "var(--foreground)",
                 },
+                transition: "all 0.2s ease",
               }}
             >
-              <ArrowBackIcon />
+              <ArrowBackIcon fontSize="small" />
             </IconButton>
 
             {/* Dots */}
@@ -231,14 +217,14 @@ export function Testimonials() {
                     setCurrent(index);
                   }}
                   sx={{
-                    width: index === current ? 24 : 8,
-                    height: 8,
-                    borderRadius: 4,
-                    bgcolor: index === current ? "#8B5CF6" : "rgba(139, 92, 246, 0.3)",
+                    width: index === current ? 24 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    bgcolor: index === current ? "var(--foreground)" : "var(--border)",
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
+                    transition: "all 0.2s ease",
                     "&:hover": {
-                      bgcolor: index === current ? "#8B5CF6" : "rgba(139, 92, 246, 0.5)",
+                      bgcolor: index === current ? "var(--foreground)" : "var(--muted-foreground)",
                     },
                   }}
                 />
@@ -249,15 +235,19 @@ export function Testimonials() {
               onClick={handleNext}
               aria-label="Next testimonial"
               sx={{
-                bgcolor: "rgba(139, 92, 246, 0.1)",
-                border: "1px solid rgba(139, 92, 246, 0.2)",
-                color: "#8B5CF6",
+                width: 36,
+                height: 36,
+                bgcolor: "var(--card)",
+                border: "1px solid var(--border)",
+                color: "var(--foreground)",
                 "&:hover": {
-                  bgcolor: "rgba(139, 92, 246, 0.2)",
+                  bgcolor: "var(--secondary)",
+                  borderColor: "var(--foreground)",
                 },
+                transition: "all 0.2s ease",
               }}
             >
-              <ArrowForwardIcon />
+              <ArrowForwardIcon fontSize="small" />
             </IconButton>
           </Box>
         </MotionBox>
