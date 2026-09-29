@@ -1,16 +1,16 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { AnimatedBackground } from "@/components/ui/animated-background";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
-import { About } from "@/components/sections/about";
-import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
-import { Experience } from "@/components/sections/experience";
+import { About } from "@/components/sections/about";
+import { Process } from "@/components/sections/process";
 import { Services } from "@/components/sections/services";
-import { Testimonials } from "@/components/sections/testimonials";
+import { Metrics } from "@/components/sections/metrics";
+import { Experience } from "@/components/sections/experience";
+import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -19,19 +19,21 @@ export default function Home() {
       sx={{
         position: "relative",
         minHeight: "100vh",
-        overflow: "hidden",
+        backgroundColor: "#07080A",
+        color: "#FFFFFF",
+        overflowX: "hidden",
       }}
     >
-      <AnimatedBackground />
       <Navbar />
       <Box component="main">
         <Hero />
-        <About />
-        <Skills />
         <Projects />
-        <Experience />
+        <About />
+        <Process />
         <Services />
-        {/* <Testimonials /> */}
+        <Metrics />
+        <Experience />
+        <FAQ />
         <Contact />
       </Box>
       <Footer />
