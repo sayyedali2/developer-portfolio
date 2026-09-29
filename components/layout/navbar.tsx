@@ -11,46 +11,41 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  useScrollTrigger,
-  LinearProgress,
   Typography,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion, AnimatePresence } from "framer-motion";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { NAV_LINKS, DEVELOPER_INFO } from "@/lib/constants";
-
-const MotionBox = motion.create(Box);
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 50,
-  });
+  const [activeSection, setActiveSection] = useState("work");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
+      setIsScrolled(window.scrollY > 20);
 
       const sections = NAV_LINKS.map((link) => link.href.replace("#", ""));
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 140;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
+        if (section) {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -62,7 +57,13 @@ export function Navbar() {
     setMobileOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const topOffset = 84;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -72,189 +73,285 @@ export function Navbar() {
         position="fixed"
         elevation={0}
         sx={{
-          bgcolor: "transparent",
-          transition: "all 0.3s ease",
-          pt: 2,
+          bgcolor: isScrolled ? "rgba(7, 8, 10, 0.94)" : "rgba(7, 8, 10, 0.65)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid",
+          borderColor: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
+          transition: "all 0.25s ease",
+          zIndex: 1100,
+          py: 1,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              py: 1.5,
-              px: { xs: 2, md: 4 },
-              borderRadius: "12px",
-              bgcolor: trigger ? "rgba(255, 255, 255, 0.9)" : "transparent",
-              backdropFilter: trigger ? "blur(12px)" : "none",
-              border: trigger ? "1px solid var(--border)" : "1px solid transparent",
-              transition: "all 0.2s ease",
-              boxShadow: trigger ? "0 4px 20px rgba(0, 0, 0, 0.02)" : "none",
+              height: 64,
             }}
           >
-            {/* Logo */}
-            <MotionBox
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
-              sx={{
-                fontSize: "1.25rem",
-                fontWeight: 800,
-                color: "var(--foreground)",
-                cursor: "pointer",
-                letterSpacing: "-0.02em",
-              }}
-              onClick={() => handleNavClick("#home")}
-            >
-              {DEVELOPER_INFO.name.split(" ")[0]}
-              <Box component="span" sx={{ color: "var(--muted-foreground)" }}>
-                .
-              </Box>
-            </MotionBox>
-
-            {/* Desktop Navigation */}
+            {/* Logo / Brand Mark - Afterglow Studio style */}
             <Box
+              component="a"
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#home");
+              }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1.5,
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+            >
+              <Box
+                sx={{
+                  width: 8,
+                  height: 8,
+                  backgroundColor: "#E87A1E", // Solid Saffron accent dot
+                  borderRadius: "50%",
+                }}
+              />
+              <Typography
+                sx={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: { xs: "0.9375rem", sm: "1.0625rem" },
+                  fontWeight: 500,
+                  color: "#FFFFFF",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Sayyed Amaan Ali
+              </Typography>
+            </Box>
+
+            {/* Desktop Navigation Links - Afterglow Clean Typography */}
+            <Box
+              component="nav"
               sx={{
                 display: { xs: "none", md: "flex" },
                 alignItems: "center",
-                gap: 0.5,
+                gap: 3.5,
               }}
             >
-              {NAV_LINKS.map((link, index) => (
-                <MotionBox
-                  key={link.name}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                >
+              {NAV_LINKS.map((link) => {
+                const isActive = activeSection === link.href.replace("#", "");
+                return (
                   <Box
+                    key={link.name}
                     component="a"
+                    href={link.href}
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    href={link.href}
                     sx={{
-                      px: 2,
-                      py: 1,
-                      borderRadius: "6px",
+                      position: "relative",
+                      py: 0.5,
+                      fontFamily: "'Poppins', sans-serif",
                       fontSize: "0.875rem",
-                      fontWeight: 500,
-                      color: activeSection === link.href.replace("#", "")
-                        ? "var(--foreground)"
-                        : "var(--muted-foreground)",
-                      bgcolor: activeSection === link.href.replace("#", "")
-                        ? "var(--secondary)"
-                        : "transparent",
-                      cursor: "pointer",
+                      fontWeight: isActive ? 500 : 400,
+                      color: isActive ? "#FFFFFF" : "#9E9E9E",
                       textDecoration: "none",
-                      transition: "all 0.2s ease",
+                      letterSpacing: "0.02em",
+                      transition: "color 0.2s ease",
                       "&:hover": {
-                        color: "var(--foreground)",
-                        bgcolor: "var(--secondary)",
+                        color: "#FFFFFF",
                       },
                     }}
                   >
                     {link.name}
+                    {isActive && (
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          bottom: -2,
+                          left: 0,
+                          right: 0,
+                          height: "1px",
+                          backgroundColor: "#E87A1E",
+                        }}
+                      />
+                    )}
                   </Box>
-                </MotionBox>
-              ))}
+                );
+              })}
             </Box>
 
-            {/* Mobile Menu Button */}
+            {/* Desktop Right CTA - Afterglow Pill Button */}
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                alignItems: "center",
+                gap: 2,
+              }}
+            >
+              <Button
+                variant="contained"
+                onClick={() => handleNavClick("#contact")}
+                sx={{
+                  backgroundColor: "#E87A1E",
+                  color: "#000000",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "0.875rem",
+                  px: 3.25,
+                  py: 1,
+                  borderRadius: 999,
+                  textTransform: "none",
+                  boxShadow: "none",
+                  transition: "all 0.2s ease",
+                  "&:hover": {
+                    backgroundColor: "#D16B15",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                Let&apos;s Talk
+              </Button>
+            </Box>
+
+            {/* Mobile Menu Toggle */}
             <IconButton
-              aria-label="open menu"
-              edge="end"
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
               onClick={handleDrawerToggle}
-              sx={{ display: { md: "none" }, color: "var(--foreground)" }}
+              sx={{
+                display: { md: "none" },
+                color: "#FFFFFF",
+                p: 1,
+              }}
             >
               <MenuIcon />
             </IconButton>
           </Box>
         </Container>
-
-        {/* Scroll Progress Bar */}
-        <LinearProgress
-          variant="determinate"
-          value={scrollProgress}
-          sx={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 2,
-            bgcolor: "transparent",
-            "& .MuiLinearProgress-bar": {
-              background: "var(--foreground)",
-            },
-          }}
-        />
       </AppBar>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer - Clean Minimal Afterglow styling */}
       <Drawer
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
-        sx={{
-          display: { md: "none" },
-          "& .MuiDrawer-paper": {
-            width: "100%",
-            maxWidth: 320,
-            bgcolor: "var(--background)",
-            backgroundImage: "none",
+        slotProps={{
+          paper: {
+            sx: {
+              width: "100%",
+              maxWidth: 360,
+              backgroundColor: "#07080A",
+              borderLeft: "1px solid rgba(255, 255, 255, 0.12)",
+              p: 3,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            },
           },
         }}
       >
-        <Box sx={{ p: 2, display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={handleDrawerToggle} sx={{ color: "var(--foreground)" }}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-        <List sx={{ px: 2 }}>
-          <AnimatePresence>
-            {NAV_LINKS.map((link, index) => (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.2, delay: index * 0.05 }}
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 5,
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+              <Box
+                sx={{
+                  width: 8,
+                  height: 8,
+                  backgroundColor: "#E87A1E",
+                  borderRadius: "50%",
+                }}
+              />
+              <Typography
+                sx={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  color: "#FFFFFF",
+                }}
               >
-                <ListItem disablePadding sx={{ mb: 1 }}>
+                Sayyed Amaan Ali
+              </Typography>
+            </Box>
+            <IconButton
+              onClick={handleDrawerToggle}
+              sx={{ color: "#FFFFFF" }}
+              aria-label="close drawer"
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <List sx={{ p: 0 }}>
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.href.replace("#", "");
+              return (
+                <ListItem key={link.name} disablePadding sx={{ mb: 1 }}>
                   <ListItemButton
                     onClick={() => handleNavClick(link.href)}
                     sx={{
-                      borderRadius: "6px",
-                      bgcolor: activeSection === link.href.replace("#", "")
-                        ? "var(--secondary)"
-                        : "transparent",
-                      "&:hover": {
-                        bgcolor: "var(--secondary-dark)",
-                      },
+                      py: 1.5,
+                      px: 2,
+                      borderRadius: 1,
+                      backgroundColor: isActive ? "rgba(232, 122, 30, 0.1)" : "transparent",
                     }}
                   >
-                    <ListItemText
-                      primary={
-                        <Typography
-                          sx={{
-                            fontWeight: activeSection === link.href.replace("#", "") ? 600 : 500,
-                            color: activeSection === link.href.replace("#", "")
-                              ? "var(--foreground)"
-                              : "var(--muted-foreground)",
-                          }}
-                        >
-                          {link.name}
-                        </Typography>
-                      }
-                    />
+                    <Typography
+                      sx={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: "1.125rem",
+                        fontWeight: isActive ? 600 : 400,
+                        color: isActive ? "#E87A1E" : "#FFFFFF",
+                      }}
+                    >
+                      {link.name}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </List>
+              );
+            })}
+          </List>
+        </Box>
+
+        <Box sx={{ pt: 4, borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={() => handleNavClick("#contact")}
+            sx={{
+              backgroundColor: "#E87A1E",
+              color: "#000000",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              py: 1.5,
+              borderRadius: 999,
+              mb: 2,
+              "&:hover": {
+                backgroundColor: "#D16B15",
+              },
+            }}
+          >
+            Let&apos;s Talk
+          </Button>
+          <Typography
+            sx={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.8125rem",
+              color: "#9E9E9E",
+              textAlign: "center",
+            }}
+          >
+            {DEVELOPER_INFO.email}
+          </Typography>
+        </Box>
       </Drawer>
     </>
   );

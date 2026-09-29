@@ -1,136 +1,162 @@
 "use client";
 
-import { useRef } from "react";
-import { Box, Container, Typography, Grid } from "@mui/material";
-import { motion, useInView, Variants } from "framer-motion";
+import { Box, Container, Typography } from "@mui/material";
+import { motion, Variants } from "framer-motion";
+import CheckIcon from "@mui/icons-material/Check";
 import { SERVICES } from "@/lib/constants";
 import { SectionTitle } from "@/components/ui/section-title";
 
 const MotionBox = motion.create(Box);
 
 export function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
+    hidden: { opacity: 0, y: 50 },
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.95,
         ease: [0.16, 1, 0.3, 1],
+        delay: index * 0.15,
       },
-    },
+    }),
   };
 
   return (
     <Box
       id="services"
       component="section"
-      ref={ref}
       sx={{
-        py: { xs: 12, md: 16 },
-        position: "relative",
-        bgcolor: "var(--background)",
+        py: { xs: 12, md: 18 },
+        backgroundColor: "#07080A",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <SectionTitle
-          subtitle="What I Offer"
-          title="Professional Services"
-          description="Tailored web development solutions focused on performance, design, and user experience."
+          subtitle="SERVICES"
+          title="What I can help you build"
+          description="From web applications and SaaS products to backend systems and AI-powered features, I help turn ideas and business needs into useful digital products."
         />
 
-        <MotionBox
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: { xs: 4, md: 6 },
+          }}
         >
-          <Grid container spacing={3}>
-            {SERVICES.map((service) => (
-              <Grid key={service.title} size={{ xs: 12, sm: 6, md: 4 }}>
-                <MotionBox
-                  variants={cardVariants}
-                  sx={{ height: "100%" }}
+          {SERVICES.map((service, index) => (
+            <MotionBox
+              key={service.number}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                margin: "0px 0px -100px 0px",
+                amount: 0.2,
+              }}
+              sx={{
+                p: { xs: 4, md: 5 },
+                backgroundColor: "#0D0E12",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                borderRadius: "8px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+                "&:hover": {
+                  borderColor: "rgba(232, 122, 30, 0.6)",
+                  transform: "translateY(-4px)",
+                },
+              }}
+            >
+              <Box sx={{ mb: 4 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    mb: 3,
+                  }}
                 >
-                  <Box
+                  <Typography
                     sx={{
-                      height: "100%",
-                      p: 4,
-                      borderRadius: "8px",
-                      bgcolor: "var(--card)",
-                      border: "1px solid var(--border)",
-                      position: "relative",
-                      overflow: "hidden",
-                      transition: "all 0.2s ease",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.02)",
-                      "&:hover": {
-                        borderColor: "var(--foreground)",
-                        boxShadow: "0 8px 16px rgba(0,0,0,0.04)",
-                        transform: "translateY(-2px)",
-                        "& .service-icon": {
-                          borderColor: "var(--foreground)",
-                        },
-                      },
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: "0.8125rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.15em",
+                      color: "#E87A1E",
                     }}
                   >
-                    {/* Icon */}
-                    <Box
-                      className="service-icon"
-                      sx={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: "6px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        bgcolor: "var(--secondary)",
-                        border: "1px solid var(--border)",
-                        mb: 3,
-                        transition: "all 0.2s ease",
-                      }}
-                    >
-                      <service.icon sx={{ color: "var(--foreground)", fontSize: 22 }} />
-                    </Box>
+                    {service.number} // ARCHITECTURAL SERVICE
+                  </Typography>
+                </Box>
 
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 600,
-                        mb: 1.5,
-                        fontSize: "1.1rem",
-                        color: "var(--foreground)",
-                      }}
-                    >
-                      {service.title}
-                    </Typography>
+                <Typography
+                  component="h3"
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: { xs: "1.375rem", md: "1.625rem" },
+                    fontWeight: 400,
+                    color: "#FFFFFF",
+                    letterSpacing: "-0.01em",
+                    lineHeight: 1.35,
+                    mb: 2,
+                  }}
+                >
+                  {service.title}
+                </Typography>
 
+                <Typography
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: "0.9375rem",
+                    color: "#9E9E9E",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {service.description}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  pt: 3,
+                  borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1.5,
+                }}
+              >
+                {service.features.map((feature, fIdx) => (
+                  <Box
+                    key={fIdx}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1.5,
+                    }}
+                  >
+                    <CheckIcon sx={{ fontSize: 16, color: "#E87A1E" }} />
                     <Typography
-                      variant="body2"
                       sx={{
-                        color: "var(--muted-foreground)",
-                        lineHeight: 1.6,
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: "0.875rem",
+                        color: "#FFFFFF",
+                        fontWeight: 400,
                       }}
                     >
-                      {service.description}
+                      {feature}
                     </Typography>
                   </Box>
-                </MotionBox>
-              </Grid>
-            ))}
-          </Grid>
-        </MotionBox>
+                ))}
+              </Box>
+            </MotionBox>
+          ))}
+        </Box>
       </Container>
     </Box>
   );

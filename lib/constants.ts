@@ -3,14 +3,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import XIcon from "@mui/icons-material/X";
-import CodeIcon from "@mui/icons-material/Code";
+import TerminalIcon from "@mui/icons-material/Terminal";
 import StorageIcon from "@mui/icons-material/Storage";
 import WebIcon from "@mui/icons-material/Web";
-import BuildIcon from "@mui/icons-material/Build";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import SpeedIcon from "@mui/icons-material/Speed";
-import BugReportIcon from "@mui/icons-material/BugReport";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 
 export interface SocialLink {
   name: string;
@@ -18,27 +14,32 @@ export interface SocialLink {
   icon: SvgIconComponent;
 }
 
-export interface Skill {
+export interface SkillItem {
   name: string;
-  level: number;
+  tag?: string;
 }
 
-export interface SkillCategory {
-  title: string;
+export interface SkillGroup {
+  id: string;
+  category: string;
+  description: string;
   icon: SvgIconComponent;
-  skills: Skill[];
+  items: string[];
 }
 
 export interface Project {
   id: string;
+  number: string;
   title: string;
+  tagline: string;
   description: string;
-  features: string[];
+  architectureHighlights: string[];
   techStack: string[];
   image: string;
   liveUrl: string;
   githubUrl: string;
-  category: string[];
+  role: string;
+  category: string;
 }
 
 export interface Experience {
@@ -46,36 +47,38 @@ export interface Experience {
   title: string;
   company: string;
   period: string;
+  location: string;
   description: string;
   achievements: string[];
-}
-
-export interface Service {
-  title: string;
-  description: string;
-  icon: SvgIconComponent;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  content: string;
-  avatar: string;
-  rating: number;
+  techStack: string[];
 }
 
 export const DEVELOPER_INFO = {
   name: "Sayyed Amaan Ali",
-  title: "Full Stack Developer",
+  eyebrow: "FULL-STACK DEVELOPER",
+  title: "Full-Stack Developer",
+  headline: "Building modern web applications that solve real problems.",
   email: "sayyedamaanali164@gmail.com",
   intro:
-    "Passionate about building scalable, modern web applications that deliver exceptional user experiences. Specializing in React, Next.js, Nest.js and Node.js ecosystems with a focus on clean code and performance optimization.",
+    "I build full-stack web applications using Node.js, NestJS, Next.js, TypeScript, databases, APIs, and modern development tools. I enjoy turning ideas into useful products and solving the technical challenges that come with building them.",
   about:
-    "I'm a self-driven Full Stack Developer with hands-on experience building real-world web applications through internships and freelance projects. I specialize in backend development using Node.js and NestJS, while also working with Next.js and React to build complete web applications. I enjoy solving practical problems, designing reliable APIs, and turning ideas into scalable, user-friendly solutions.",
+    "I am a Full-Stack Developer with hands-on experience building web applications and AI-powered products. I work across the frontend and backend, building APIs and business logic with Node.js and NestJS, working with databases such as PostgreSQL and MongoDB, and creating modern interfaces with Next.js and TypeScript. I also work with background jobs, third-party integrations, authentication, and other parts of the application needed to turn an idea into a complete working product.",
   location: "Udaipur, Rajasthan, India",
-  availability: "Available for Full-Time & Freelance Opportunities",
+  availability: "Available for Full-Time Roles & Selected Contracts",
+  philosophy: [
+    {
+      title: "Understand Before Building",
+      text: "I start by understanding the problem, requirements, and data flow before deciding how the application should be built.",
+    },
+    {
+      title: "Build for Real Use",
+      text: "I focus on creating applications that are reliable, practical, and easy for people to use in real-world situations.",
+    },
+    {
+      title: "End-to-End Development",
+      text: "I work across the frontend and backend, from databases, APIs, and authentication to user interfaces, integrations, and deployment.",
+    },
+  ],
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -85,92 +88,114 @@ export const SOCIAL_LINKS: SocialLink[] = [
     url: "https://www.linkedin.com/in/sayyed-aman-ali-67b716287/",
     icon: LinkedInIcon,
   },
- 
   { name: "X", url: "https://x.com/SayyedAmaa61549", icon: XIcon },
+  { name: "Email", url: "mailto:sayyedamaanali164@gmail.com", icon: EmailIcon },
 ];
 
-export const SKILL_CATEGORIES: SkillCategory[] = [
+export const SKILL_GROUPS: SkillGroup[] = [
   {
-    title: "Frontend",
+    id: "backend",
+    category: "Backend & Systems",
+    description: "Server architectures, data pipelines, queue workers, and API layers.",
+    icon: StorageIcon,
+    items: [
+      "Node.js",
+      "NestJS",
+      "Express.js",
+      "REST APIs",
+      "GraphQL & Subscriptions",
+      "Redis",
+      "BullMQ",
+      "Microservices",
+    ],
+  },
+  {
+    id: "frontend",
+    category: "Frontend & Interfaces",
+    description: "Type-safe interfaces, state flows, and responsive design systems.",
     icon: WebIcon,
-    skills: [
-      { name: "React", level: 90 },
-      { name: "Next.js", level: 85 },
-      { name: "TypeScript", level: 85 },
-      { name: "JavaScript", level: 95 },
-      { name: "Material UI", level: 80 },
-      { name: "Tailwind CSS", level: 90 },
+    items: [
+      "Next.js (App Router)",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Material UI",
+      "HTML5 / CSS3",
+      "Responsive Layouts",
     ],
   },
   {
-    title: "Backend",
-    icon: StorageIcon,
-    skills: [
-      { name: "Node.js", level: 85 },
-      { name: "Express.js", level: 80 },
-      { name: "NestJS", level: 70 },
-      { name: "REST APIs", level: 90 },
-      { name: "GraphQL", level: 80 },
+    id: "database",
+    category: "Database & Cloud",
+    description: "Schema modeling, relational & document databases, and host infrastructure.",
+    icon: TerminalIcon,
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "Supabase",
+      "MySQL",
+      "Docker Basics",
+      "Railway",
+      "Vercel",
     ],
   },
   {
-    title: "Database",
-    icon: StorageIcon,
-    skills: [
-      { name: "MongoDB", level: 85 },
-      { name: "PostgreSQL", level: 75 },
-      { name: "MySQL", level: 70 },
-    ],
-  },
-  {
-    title: "Tools",
-    icon: BuildIcon,
-    skills: [
-      { name: "Git", level: 90 },
-      { name: "GitHub", level: 90 },
-      { name: "Docker", level: 65 },
-      { name: "Postman", level: 85 },
+    id: "workflows",
+    category: "Workflows & Integrations",
+    description: "Third-party APIs, streaming pipelines, auth standards, and dev toolchains.",
+    icon: IntegrationInstructionsIcon,
+    items: [
+      "LLM Streaming (Gemini / Groq)",
+      "Razorpay Payments",
+      "JWT & RBAC Auth",
+      "Git & GitHub Workflows",
+      "Postman API Testing",
+      "Environment Security",
     ],
   },
 ];
 
 export const PROJECTS: Project[] = [
-  {
-    id: "1",
-    title: "Sales CRM SaaS",
-    description:
-      "A multi-tenant SaaS platform designed for companies to efficiently manage sales workflows, track leads, and automate email sequences through a centralized dashboard.",
-    features: [
-      "Multi-tenant architecture",
-      "Lead & sales pipeline management",
-      "Automated email sequences",
-      "Workforce tracking dashboard",
-    ],
-    techStack: [
-      "Next.js",
-      "NestJS",
-      "TypeScript",
-      "GraphQL",
-      "MongoDB",
-      "Material UI",
-    ],
-    image: "/salseProject.png",
-    liveUrl: "https://salse-crm.vercel.app/",
-    githubUrl: "https://github.com/sayyedali2/salse_crm",
-    category: ["Full Stack", "SaaS"],
-  },
-  {
-  id: "2",
-  title: "AI Prompt Optimizer",
+{
+  id: "sales-crm",
+  number: "01",
+  title: "Sales CRM SaaS",
+  tagline: "Multi-tenant platform for managing sales, teams, and customer outreach",
   description:
-    "An AI-powered platform that transforms simple ideas into clear, detailed, and effective prompts for AI tools, helping users get more useful and consistent results.",
-  features: [
-    "AI-powered prompt optimization",
-    "Prompt generation and refinement",
-    "Background job processing with BullMQ",
-    "Credit-based usage system",
-    "User authentication and profile management",
-    "Razorpay payment integration"
+    "A full-stack CRM application built to help sales teams manage leads, track team activity, organize sales workflows, and automate customer outreach from one place.",
+  architectureHighlights: [
+    "Multi-tenant architecture with isolated organization data",
+    "Real-time updates using GraphQL subscriptions",
+    "Automated email sequences for customer outreach",
+    "Sales metrics and team activity tracking",
+  ],
+  techStack: [
+    "Next.js",
+    "NestJS",
+    "TypeScript",
+    "GraphQL",
+    "MongoDB",
+    "Material UI",
+  ],
+  image: "/salseProject.png",
+  liveUrl: "https://salse-crm.vercel.app/",
+  githubUrl: "https://github.com/sayyedali2/salse_crm",
+  role: "Full-Stack Developer",
+  category: "Full Stack SaaS",
+},
+ {
+  id: "prompt-optimizer",
+  number: "02",
+  title: "AI Prompt Optimizer",
+  tagline: "AI-powered platform for improving and structuring user prompts",
+  description:
+    "A web application that transforms unclear prompts into more structured and effective instructions using multiple AI models. Built with background job processing to handle AI generation without blocking regular web requests.",
+  architectureHighlights: [
+    "Background job processing using BullMQ and Redis",
+    "AI generation pipeline integrating Google Gemini and Groq",
+    "Credit-based usage system with user profiles and quotas",
+    "Razorpay checkout with secure webhook verification",
+    "Supabase database with token-based authentication",
   ],
   techStack: [
     "Next.js",
@@ -178,180 +203,265 @@ export const PROJECTS: Project[] = [
     "Supabase",
     "BullMQ",
     "Redis",
-    "Gemini",
-    "Groq"
+    "Gemini API",
+    "Groq",
+    "Razorpay",
   ],
   image: "/promptOptimizer.png",
   liveUrl: "https://prompt-improver-gules.vercel.app/",
   githubUrl: "https://github.com/sayyedali2/developer-portfolio",
-  category: ["Full Stack", "AI"]
+  role: "Full-Stack Developer",
+  category: "AI Application",
 },
   {
-    id: "3",
-    title: "AI Technical Screener",
-    description:
-      "An AI-integrated recruitment tool utilizing real-time API streaming to automate technical screening rounds and streamline the candidate evaluation process.",
-    features: [
-      "Automated technical interviews",
-      "Real-time AI response streaming",
-      "Candidate evaluation metrics",
-      "Recruiter management dashboard",
-    ],
-    techStack: ["Next.js", "NestJS", "TypeScript", "Gemini API", "MongoDB"],
-    image: "/screeingProject.png",
-    liveUrl: "https://ai-powered-technical-screening-micr.vercel.app/",
-    githubUrl: "https://github.com/sayyedali2/ai-powered-technical-screening-micro-saas",
-    category: ["Full Stack", "SaaS"],
-  },
-];
-
-export const PROJECT_CATEGORIES = [
-  "All",
-  "Full Stack",
-  "Frontend",
-  "Freelance",
-  "SaaS",
+  id: "technical-screener",
+  number: "03",
+  title: "AI Technical Screener",
+  tagline: "AI-powered platform for conducting and evaluating technical interviews",
+  description:
+    "A recruitment screening application that conducts technical interviews using AI and generates structured evaluations for recruiters. The platform provides an interactive interview experience and organizes candidate responses into useful assessment data.",
+  architectureHighlights: [
+    "Real-time AI responses using Gemini API",
+    "Structured candidate evaluation and scorecard generation",
+    "Recruiter dashboard for managing candidates and interview sessions",
+    "NestJS backend for handling interview and evaluation workflows",
+  ],
+  techStack: [
+    "Next.js",
+    "NestJS",
+    "TypeScript",
+    "Gemini API",
+    "MongoDB",
+  ],
+  image: "/screeingProject.png",
+  liveUrl: "https://ai-powered-technical-screening-micr.vercel.app/",
+  githubUrl: "https://github.com/sayyedali2/ai-powered-technical-screening-micro-saas",
+  role: "Full-Stack Developer",
+  category: "AI Application",
+},
 ];
 
 export const EXPERIENCES: Experience[] = [
   {
-    id: "1",
-    title: "Jr Fullstack developer Intern",
-    company: "Infotact Solution pvt ldt.",
-    period: "25 April 2025 - 25 july 2025",
+    id: "websenor",
+    title: "Full-Stack Developer Intern",
+    company: "Websenor Pvt. Ltd.",
+    period: "Dec 2025 - Mar 2026",
+    location: "Udaipur, India",
     description:
-      "​Designed and implemented responsive full-stack applications using React and Node.js, Express.js.",
+      "Worked on full-stack features for commercial web applications, including a multi-tenant Sales CRM and related business workflows.",
     achievements: [
-      "Implemented E-commerce Website projects for client",
-      "Maintained 100% client satisfaction rate with repeat customers",
-      "Specialized in React/Next.js frontends with Node.js backends",
+      "Developed backend features for a multi-tenant Sales CRM using NestJS, GraphQL, and MongoDB.",
+      "Implemented real-time data updates using GraphQL subscriptions for lead and sales activity changes.",
+      "Built frontend features with Next.js and connected them with backend APIs and business logic.",
+      "Worked with the development team on feature implementation, debugging, code improvements, and documentation.",
     ],
+    techStack: ["NestJS", "Next.js", "GraphQL", "MongoDB", "TypeScript"],
   },
+
   {
-    id: "2",
-    title: " FullStack Developer Intern",
+    id: "burak",
+    title: "Full-Stack Developer Intern",
     company: "Burak Information & Technologies",
-    period: "1 Aug 2025 - 30 Nov 2025",
+    period: "Aug 2025 - Nov 2025",
+    location: "Udaipur, India",
     description:
-      "Contributed to the development of web applications in a fast-paced startup environment.",
+      "Worked on web application features across the frontend and backend, with a focus on building reusable components and API integrations.",
     achievements: [
-      "Developed and maintained features for company",
-      "Collaborated with senior developers on architecture decisions",
-      "Reduced page load times by 40% through performance optimization",
-      "Participated in code reviews and agile development processes",
+      "Developed frontend features using React and connected them with Node.js and Express APIs.",
+      "Built reusable UI components for different application features and workflows.",
+      "Worked with MongoDB for storing and retrieving application data.",
+      "Participated in daily development tasks, debugging, code reviews, and team discussions.",
     ],
+    techStack: ["React", "Node.js", "Express.js", "MongoDB", "REST APIs"],
   },
+
   {
-    id: "3",
-    title: "FullStack Developer Intern",
-    company: "Websenor Pvt Ldt.",
-    period: "15 Dec 2025 - 16 March 2026",
+    id: "infotact",
+    title: "Jr. Full-Stack Developer Intern",
+    company: "Infotact Solution Pvt. Ltd.",
+    period: "Apr 2025 - Jul 2025",
+    location: "Udaipur, India",
     description:
-      "Architected a multi-tenant Sales CRM that automated 70% of the passive sales workflow, significantly reducing manual data entry for the team.",
+      "Worked on client web projects, building responsive interfaces and backend functionality for business applications.",
     achievements: [
-      "Executed Real-Time Data Synchronization using GraphQL Subscriptions, ensuring instant updates for leads and team activities across the dashboard.",
-      "Learned industry best practices for code quality and documentation",
-      "Assisted in migrating legacy projects to modern tech stacks",
-      "Contributed to internal tools development",
+      "Developed full-stack e-commerce features using React, Express, and MySQL.",
+      "Implemented authentication, cart functionality, and product catalog features.",
+      "Built responsive user interfaces and connected them with backend APIs.",
+      "Worked on debugging, feature updates, and improving existing application functionality.",
     ],
-  },
-];
-
-export const SERVICES: Service[] = [
-  {
-    title: "Full Stack Web Development",
-    description:
-      "End-to-end web application development with modern technologies, from database design to deployment.",
-    icon: CodeIcon,
-  },
-  {
-    title: "Frontend Development",
-    description:
-      "Beautiful, responsive, and performant user interfaces using React, Next.js, and modern CSS frameworks.",
-    icon: WebIcon,
-  },
-  {
-    title: "Backend API Development",
-    description:
-      "Scalable RESTful APIs and GraphQL services with Node.js, Express, and database integration.",
-    icon: StorageIcon,
-  },
-  {
-    title: "Dashboard & Admin Panels",
-    description:
-      "Custom admin dashboards with data visualization, user management, and analytics features.",
-    icon: DashboardIcon,
-  },
-  {
-    title: "Landing Pages",
-    description:
-      "High-converting landing pages with stunning animations, SEO optimization, and fast load times.",
-    icon: RocketLaunchIcon,
-  },
-  {
-    title: "Bug Fixing & Optimization",
-    description:
-      "Debugging, performance optimization, and code refactoring for existing applications.",
-    icon: BugReportIcon,
-  },
-  {
-    title: "Website Optimization",
-    description:
-      "Performance audits, Core Web Vitals improvements, and SEO enhancements for better rankings.",
-    icon: SpeedIcon,
-  },
-];
-
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    id: "1",
-    name: "Sarah Chen",
-    role: "Founder",
-    company: "StartupFlow",
-    content:
-      "Amaan delivered our MVP ahead of schedule with exceptional quality. The communication was outstanding, and the code is clean and well-documented. Highly recommend!",
-    avatar: "/avatars/sarah.jpg",
-    rating: 5,
-  },
-  {
-    id: "2",
-    name: "Michael Torres",
-    role: "Product Manager",
-    company: "TechVentures",
-    content:
-      "Working with Amaan was a pleasure. Fast delivery, clean UI, and great attention to detail. Our dashboard looks amazing and performs flawlessly.",
-    avatar: "/avatars/michael.jpg",
-    rating: 5,
-  },
-  {
-    id: "3",
-    name: "Emily Watson",
-    role: "CEO",
-    company: "DigitalFirst Agency",
-    content:
-      "Professional, responsive, and delivers exactly what was promised. Amaan transformed our outdated website into a modern, high-converting platform.",
-    avatar: "/avatars/emily.jpg",
-    rating: 5,
-  },
-  {
-    id: "4",
-    name: "David Park",
-    role: "CTO",
-    company: "InnovateTech",
-    content:
-      "Amaan technical skills are impressive, but what sets them apart is the ability to understand business requirements and translate them into elegant solutions.",
-    avatar: "/avatars/david.jpg",
-    rating: 5,
+    techStack: ["React", "Node.js", "Express.js", "MySQL", "JavaScript"],
   },
 ];
 
 export const NAV_LINKS = [
-  { name: "Home", href: "#home" },
+  { name: "Work", href: "#work" },
   { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
+  { name: "Process", href: "#process" },
   { name: "Services", href: "#services" },
-  { name: "Testimonials", href: "#testimonials" },
+  { name: "Experience", href: "#experience" },
+  { name: "Answers", href: "#faq" },
   { name: "Contact", href: "#contact" },
 ];
+
+export interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
+export const PROCESS_STEPS: ProcessStep[] = [
+  {
+    step: "STEP 1",
+    title: "Understand the idea & requirements",
+    description:
+      "We start by understanding the problem, goals, users, and key requirements. This gives us a clear direction before development begins.",
+  },
+
+  {
+    step: "STEP 2",
+    title: "Plan the solution",
+    description:
+      "I break the requirements into features, plan the application structure, and decide how the frontend, backend, database, and integrations will work together.",
+  },
+
+  {
+    step: "STEP 3",
+    title: "Build the core functionality",
+    description:
+      "I develop the backend, APIs, database, and core business logic while building the main features needed to make the product work.",
+  },
+
+  {
+    step: "STEP 4",
+    title: "Build the interface & connect everything",
+    description:
+      "I create the frontend, connect it with the backend, and integrate the services the product needs. The goal is a complete and easy-to-use experience.",
+  },
+
+  {
+    step: "STEP 5",
+    title: "Test, deploy & improve",
+    description:
+      "I test the application, fix issues, deploy it, and make improvements based on how the product performs and what users need.",
+  },
+];
+
+export interface ServiceItem {
+  number: string;
+  title: string;
+  description: string;
+  features: string[];
+}
+
+export const SERVICES: ServiceItem[] = [
+  {
+    number: "01",
+    title: "Web Application Development",
+    description:
+      "Complete web applications built around your business needs, from frontend interfaces and backend APIs to databases, authentication, and integrations.",
+    features: [
+      "Full-stack development with Next.js and Node.js",
+      "REST APIs and GraphQL",
+      "Authentication and role-based access",
+      "Third-party API and service integrations",
+    ],
+  },
+
+  {
+    number: "02",
+    title: "Backend & API Development",
+    description:
+      "Reliable backend systems that handle business logic, data, authentication, background tasks, and the APIs your application needs.",
+    features: [
+      "Node.js and NestJS backend development",
+      "REST APIs and GraphQL",
+      "Background jobs with BullMQ and Redis",
+      "Authentication, authorization, and business logic",
+    ],
+  },
+
+  {
+    number: "03",
+    title: "SaaS & Business Applications",
+    description:
+      "Custom SaaS and business applications designed around real workflows, helping teams manage data, automate tasks, and bring different processes into one place.",
+    features: [
+      "Multi-tenant SaaS applications",
+      "Team and role management",
+      "Dashboards and business workflows",
+      "Database design and application integrations",
+    ],
+  },
+
+  {
+    number: "04",
+    title: "AI-Powered Applications",
+    description:
+      "Web applications that use AI to automate tasks, improve workflows, and create new product experiences using modern AI APIs and supporting backend systems.",
+    features: [
+      "AI features with Gemini and Groq",
+      "Prompt processing and AI workflows",
+      "Background processing for AI tasks",
+      "AI integrations with existing applications",
+    ],
+  },
+];
+
+export interface MetricItem {
+  value: string;
+  label: string;
+  description: string;
+}
+
+export const METRICS: MetricItem[] = [
+  {
+    value: "3+",
+    label: "Full-Stack Projects",
+    description: "Built SaaS, AI, and business-focused web applications",
+  },
+
+  {
+    value: "3",
+    label: "AI-Powered Applications",
+    description: "Built products using Gemini, Groq, and AI-driven workflows",
+  },
+
+  {
+    value: "Full-Stack",
+    label: "Development Experience",
+    description: "Working across frontend, backend, databases, APIs, and integrations",
+  },
+];
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQS: FAQItem[] = [
+  {
+    question: "What kind of roles or projects are you open to?",
+    answer:
+      "I am open to full-time Full-Stack Developer roles, as well as selected contract and freelance projects involving web applications, SaaS products, and AI-powered applications.",
+  },
+
+  {
+    question: "What technologies do you work with?",
+    answer:
+      "My main stack includes TypeScript, Node.js, NestJS, Next.js, React, PostgreSQL, MongoDB, and Redis. I also work with APIs, background jobs, authentication, AI APIs, and third-party integrations.",
+  },
+
+  {
+    question: "Can you handle both frontend and backend development?",
+    answer:
+      "Yes. I work across the frontend and backend to build complete web applications. I use Next.js and React for interfaces, and Node.js and NestJS for APIs, business logic, databases, authentication, background processing, and integrations.",
+  },
+
+  {
+    question: "Where are you located and how do you work?",
+    answer:
+      "I am based in Udaipur, Rajasthan, India (UTC+5:30). I am comfortable working remotely with clear communication, written updates, and regular coordination with teams and clients.",
+  },
+];
+

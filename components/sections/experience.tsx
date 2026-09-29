@@ -1,35 +1,20 @@
 "use client";
 
-import { useRef } from "react";
-import { Box, Container, Typography, Grid, Stack } from "@mui/material";
-import { motion, useInView, Variants } from "framer-motion";
+import { Box, Container, Typography } from "@mui/material";
+import { motion, Variants } from "framer-motion";
 import { EXPERIENCES } from "@/lib/constants";
 import { SectionTitle } from "@/components/ui/section-title";
-import WorkIcon from "@mui/icons-material/Work";
 
 const MotionBox = motion.create(Box);
 
 export function Experience() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 44 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.9,
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -39,153 +24,205 @@ export function Experience() {
     <Box
       id="experience"
       component="section"
-      ref={ref}
       sx={{
-        py: { xs: 12, md: 16 },
-        position: "relative",
-        bgcolor: "var(--background)",
+        py: { xs: 12, md: 18 },
+        backgroundColor: "#07080A",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth="xl">
         <SectionTitle
-          subtitle="Career"
-          title="Professional Journey"
-          description="A timeline of my roles and achievements in the industry."
+          subtitle="EXPERIENCE"
+          title="My development experience"
+          description="Hands-on experience building web applications, developing features, working with APIs and databases, and collaborating with development teams."
         />
 
-        <MotionBox
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 4,
-          }}
-        >
-          {EXPERIENCES.map((experience) => (
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          {EXPERIENCES.map((exp, index) => (
             <MotionBox
-              key={experience.id}
+              key={exp.id}
               variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                margin: "0px 0px -80px 0px",
+                amount: 0.2,
+              }}
+              sx={{
+                py: { xs: 5, md: 6 },
+                borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+                borderBottom:
+                  index === EXPERIENCES.length - 1
+                    ? "1px solid rgba(255, 255, 255, 0.08)"
+                    : "none",
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", md: "260px 1fr" },
+                gap: { xs: 3, md: 6 },
+                alignItems: "start",
+                transition: "background-color 0.25s ease",
+                px: { xs: 0, md: 2 },
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.015)",
+                },
+              }}
             >
-              <Box
-                sx={{
-                  p: { xs: 3, md: 5 },
-                  borderRadius: "16px",
-                  bgcolor: "var(--card)",
-                  border: "1px solid var(--border)",
-                  transition: "all 0.2s ease",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
-                  "&:hover": {
-                    borderColor: "var(--foreground)",
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
-                  },
-                }}
-              >
-                <Grid container spacing={3}>
-                  {/* Left Column: Date & Company */}
-                  <Grid size={{ xs: 12, md: 4 }}>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                      <Typography
-                        variant="overline"
+              {/* Left Column: Period & Location */}
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: "0.875rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    color: "#E87A1E",
+                    mb: 1,
+                  }}
+                >
+                  {exp.period}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: "0.8125rem",
+                    color: "#9E9E9E",
+                  }}
+                >
+                  {exp.location}
+                </Typography>
+              </Box>
+
+              {/* Right Column: Title, Company, Description & Achievements */}
+              <Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "baseline",
+                    gap: 1.5,
+                    mb: 1.5,
+                  }}
+                >
+                  <Typography
+                    component="h3"
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: { xs: "1.25rem", md: "1.5rem" },
+                      fontWeight: 500,
+                      color: "#FFFFFF",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {exp.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: "1rem",
+                      fontWeight: 400,
+                      color: "#9E9E9E",
+                    }}
+                  >
+                    at{" "}
+                    <Box component="span" sx={{ color: "#FFFFFF" }}>
+                      {exp.company}
+                    </Box>
+                  </Typography>
+                </Box>
+
+                <Typography
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: "0.9375rem",
+                    color: "#9E9E9E",
+                    lineHeight: 1.7,
+                    mb: 3,
+                  }}
+                >
+                  {exp.description}
+                </Typography>
+
+                {/* Achievements List */}
+                <Box
+                  component="ul"
+                  sx={{
+                    m: 0,
+                    p: 0,
+                    listStyle: "none",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 1.25,
+                    mb: 3,
+                  }}
+                >
+                  {exp.achievements.map((ach, achIdx) => (
+                    <Box
+                      component="li"
+                      key={achIdx}
+                      sx={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: 1.5,
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: "0.875rem",
+                        color: "#9E9E9E",
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      <Box
                         sx={{
-                          color: "var(--muted-foreground)",
-                          fontWeight: 600,
-                          letterSpacing: "0.05em",
+                          width: 5,
+                          height: 5,
+                          borderRadius: "50%",
+                          backgroundColor: "#E87A1E",
+                          mt: 1,
+                          flexShrink: 0,
+                        }}
+                      />
+                      <Typography
+                        component="span"
+                        sx={{
+                          fontFamily: "'Poppins', sans-serif",
+                          fontSize: "0.875rem",
+                          color: "#FFFFFF",
                         }}
                       >
-                        {experience.period}
+                        {ach}
                       </Typography>
-                      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mt: 1 }}>
-                        <Box
-                          sx={{
-                            width: 32,
-                            height: 32,
-                            borderRadius: "8px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            bgcolor: "var(--secondary)",
-                            border: "1px solid var(--border)",
-                          }}
-                        >
-                          <WorkIcon sx={{ fontSize: 16, color: "var(--foreground)" }} />
-                        </Box>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{
-                            fontWeight: 700,
-                            color: "var(--foreground)",
-                            letterSpacing: "-0.01em",
-                          }}
-                        >
-                          {experience.company}
-                        </Typography>
-                      </Box>
                     </Box>
-                  </Grid>
+                  ))}
+                </Box>
 
-                  {/* Right Column: Role & Details */}
-                  <Grid size={{ xs: 12, md: 8 }}>
-                    <Typography
-                      variant="h6"
+                {/* Tech Tags */}
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                  {exp.techStack.map((tech) => (
+                    <Box
+                      key={tech}
                       sx={{
-                        fontWeight: 700,
-                        mb: 1.5,
-                        fontSize: "1.1rem",
-                        color: "var(--foreground)",
+                        px: 1.75,
+                        py: 0.5,
+                        borderRadius: 999,
+                        backgroundColor: "rgba(255, 255, 255, 0.04)",
+                        border: "1px solid rgba(255, 255, 255, 0.08)",
                       }}
                     >
-                      {experience.title}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "var(--muted-foreground)",
-                        mb: 3,
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {experience.description}
-                    </Typography>
-
-                    {/* Achievements */}
-                    <Stack spacing={1.5}>
-                      {experience.achievements.map((achievement, i) => (
-                        <Box
-                          key={i}
-                          sx={{
-                            display: "flex",
-                            alignItems: "flex-start",
-                            gap: 1.5,
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              width: 6,
-                              height: 6,
-                              borderRadius: "50%",
-                              bgcolor: "var(--border)",
-                              mt: 1,
-                              flexShrink: 0,
-                            }}
-                          />
-                          <Typography
-                            variant="body2"
-                            sx={{ color: "var(--muted-foreground)", fontSize: "0.9rem", lineHeight: 1.6 }}
-                          >
-                            {achievement}
-                          </Typography>
-                        </Box>
-                      ))}
-                    </Stack>
-                  </Grid>
-                </Grid>
+                      <Typography
+                        sx={{
+                          fontFamily: "'Poppins', sans-serif",
+                          fontSize: "0.75rem",
+                          color: "#9E9E9E",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {tech}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
               </Box>
             </MotionBox>
           ))}
-        </MotionBox>
+        </Box>
       </Container>
     </Box>
   );
